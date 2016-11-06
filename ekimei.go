@@ -6,3 +6,6 @@ type ekimei struct {
 	Romaji string
 	Shozoku string
 }
+
+
+
