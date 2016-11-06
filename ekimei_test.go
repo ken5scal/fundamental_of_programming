@@ -5,7 +5,8 @@ import (
 )
 
 func TestHyoji(t *testing.T) {
-	actual := &Ekimei{Kana:"C", Kanji:"B", Shozoku:"A"}.Hyoji()
+	sut := &Ekimei{Kana:"C", Kanji:"B", Shozoku:"A"}
+	actual := sut.Hyoji()
 	expected := "A, B(C)"
 	if actual != expected {
 		t.Errorf("got %v instead of %v", actual, expected)
