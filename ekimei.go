@@ -7,5 +7,3 @@ type ekimei struct {
 	Shozoku string
 }
 
-
-
