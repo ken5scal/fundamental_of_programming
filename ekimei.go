@@ -8,7 +8,7 @@ type Ekimei struct {
 }
 
 // Returns Shozoku and Kanji(Kana)
-// Ex: &e{Kanji: A, Kana: B, Shozoku: C}.hyoji() -> "A, B(C)"
+// Ex: &e{Kanji: A, Kana: B, Shozoku: C}.hyoji() -> "C, A(B)"
 func (e *Ekimei) Hyoji() string {
-	return ""
+	return e.Shozoku + ", " + e.Kanji + "(" + e.Kana + ")"
 }
