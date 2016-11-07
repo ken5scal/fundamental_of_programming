@@ -13,7 +13,7 @@ func (e *Ekimei) Hyoji() string {
 	return e.Shozoku + ", " + e.Kanji + "(" + e.Kana + ")"
 }
 
-var global_ekimei_list = []Ekimei{
+var GlobalEkimeiList = []Ekimei{
 	{Kanji:"代々木上原", Kana:"よよぎうえはら", Romaji:"yoyogiuehara", Shozoku:"千代田線"},
 	{Kanji:"代々木公園", Kana:"よよぎこうえん", Romaji:"yoyogikouen", Shozoku:"千代田線"},
 	{Kanji:"明治神宮前", Kana:"めいじじんぐうまえ", Romaji:"meijijinguumae", Shozoku:"千代田線"},
