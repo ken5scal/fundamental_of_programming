@@ -15,7 +15,7 @@ func TestHyoji(t *testing.T) {
 
 func TestGlobalEkimeiList_RomajiToKanji(t *testing.T) {
 	sut := &GlobalEkimeiList{EkimeiList: Ekimei_List}
-	actual := sut.RomajiToKanji("myogadai")
+	actual := sut.RomajiToKanji("myogadani")
 	expected := "茗荷谷"
 	if actual != expected {
 		t.Errorf("got %v instead of %v", actual, expected)

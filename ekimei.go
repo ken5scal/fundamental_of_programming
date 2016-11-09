@@ -19,9 +19,17 @@ type GlobalEkimeiList struct {
 
 // Convert ローマ字 to 漢字
 // Ex: &g{list: global_ekimei_list}.RomajiToKanji("myogadani") ->　茗荷谷
-func (g *GlobalEkimeiList) RomajiToKanji(kana string) string {
+func (g *GlobalEkimeiList) RomajiToKanji(romaji string) string {
+	if cap(g.EkimeiList) == 0 || g.EkimeiList == nil {
+		return ""
+	}
 
-	return ""
+	if g.EkimeiList[0].Romaji == romaji {
+		return g.EkimeiList[0].Kanji
+	} else {
+		g.EkimeiList = g.EkimeiList[1:]
+		return g.RomajiToKanji(romaji)
+	}
 }
 
 var Ekimei_List = []Ekimei{
