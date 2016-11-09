@@ -13,7 +13,17 @@ func (e *Ekimei) Hyoji() string {
 	return e.Shozoku + ", " + e.Kanji + "(" + e.Kana + ")"
 }
 
-var GlobalEkimeiList = []Ekimei{
+type GlobalEkimeiList struct {
+	list []Ekimei
+}
+
+// Convert ローマ字 to 漢字
+// Ex: &g{list: global_ekimei_list}.RomajiToKanji("myogadani") ->　茗荷谷
+func (g *GlobalEkimeiList) RomajiToKanji(kana string) string {
+	return ""
+}
+
+var global_ekimei_list = []Ekimei{
 	{Kanji:"代々木上原", Kana:"よよぎうえはら", Romaji:"yoyogiuehara", Shozoku:"千代田線"},
 	{Kanji:"代々木公園", Kana:"よよぎこうえん", Romaji:"yoyogikouen", Shozoku:"千代田線"},
 	{Kanji:"明治神宮前", Kana:"めいじじんぐうまえ", Romaji:"meijijinguumae", Shozoku:"千代田線"},
