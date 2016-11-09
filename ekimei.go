@@ -20,16 +20,23 @@ type GlobalEkimeiList struct {
 // Convert ローマ字 to 漢字
 // Ex: &g{list: global_ekimei_list}.RomajiToKanji("myogadani") ->　茗荷谷
 func (g *GlobalEkimeiList) RomajiToKanji(romaji string) string {
-	if cap(g.EkimeiList) == 0 || g.EkimeiList == nil {
-		return ""
+	for _, ekimei := range g.EkimeiList {
+		if ekimei.Romaji == romaji {
+			return ekimei.Kanji
+		}
 	}
-
-	if g.EkimeiList[0].Romaji == romaji {
-		return g.EkimeiList[0].Kanji
-	} else {
-		g.EkimeiList = g.EkimeiList[1:]
-		return g.RomajiToKanji(romaji)
-	}
+	return ""
+	// Recursive Method on Belog
+	//if cap(g.EkimeiList) == 0 || g.EkimeiList == nil {
+	//	return ""
+	//}
+	//
+	//if g.EkimeiList[0].Romaji == romaji {
+	//	return g.EkimeiList[0].Kanji
+	//} else {
+	//	g.EkimeiList = g.EkimeiList[1:]
+	//	return g.RomajiToKanji(romaji)
+	//}
 }
 
 var Ekimei_List = []Ekimei{
