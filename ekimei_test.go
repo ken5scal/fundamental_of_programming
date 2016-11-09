@@ -21,3 +21,12 @@ func TestGlobalEkimeiList_RomajiToKanji(t *testing.T) {
 		t.Errorf("got %v instead of %v", actual, expected)
 	}
 }
+
+func TestRomajiToKanjiWithUnmatchedInput(t *testing.T) {
+	sut := &GlobalEkimeiList{EkimeiList: Ekimei_List}
+	actual := sut.RomajiToKanji("IdoNotExist")
+	expected := ""
+	if actual != expected {
+		t.Error("Actual value is not Empty")
+	}
+}

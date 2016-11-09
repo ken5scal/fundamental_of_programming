@@ -20,6 +20,7 @@ type GlobalEkimeiList struct {
 // Convert ローマ字 to 漢字
 // Ex: &g{list: global_ekimei_list}.RomajiToKanji("myogadani") ->　茗荷谷
 func (g *GlobalEkimeiList) RomajiToKanji(kana string) string {
+
 	return ""
 }
 
