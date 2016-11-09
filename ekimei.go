@@ -26,7 +26,7 @@ func (g *GlobalEkimeiList) RomajiToKanji(romaji string) string {
 		}
 	}
 	return ""
-	// Recursive Method on Belog
+	// Recursive Method on Below
 	//if cap(g.EkimeiList) == 0 || g.EkimeiList == nil {
 	//	return ""
 	//}

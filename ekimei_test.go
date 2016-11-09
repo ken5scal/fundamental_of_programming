@@ -23,7 +23,7 @@ func TestGlobalEkimeiList_RomajiToKanji(t *testing.T) {
 }
 
 func TestRomajiToKanjiWithUnmatchedInput(t *testing.T) {
-	sut := &GlobalEkimeiList{EkimeiList: Ekimei_List}
+	sut := &GlobalEkimeiList{}
 	actual := sut.RomajiToKanji("IdoNotExist")
 	expected := ""
 	if actual != expected {
