@@ -8,7 +8,15 @@ type Ekikan struct {
 	jikan  int // in Minute
 }
 
-var GlobalEkikanList = [] Ekikan{
+// Get Distance between two stations with Kanji Input
+// Ex: &g{list: Ekikan_List}.GetEkikanKyori("茗荷谷", "新大塚") -> 1.2
+// Ex: &g{list: Ekikan_List}.GetEkikanKyori("茗荷谷新大塚", "") -> 1.2
+// Ex: &g{list: Ekikan_List}.GetEkikanKyori("茗荷谷", "**Non Direct Connection**") -> infinity
+func (g *GlobalEkikan) GetEkikanKyori(station1, station2 string) float64 {
+	return 0
+}
+
+var Ekikan_List = [] Ekikan{
 	{kiten:"代々木上原", shuten:"代々木公園", keiyu:"千代田線", kyori:1.0, jikan:2},
 	{kiten:"代々木公園", shuten:"明治神宮前", keiyu:"千代田線", kyori:1.2, jikan:2},
 	{kiten:"明治神宮前", shuten:"表参道", keiyu:"千代田線", kyori:0.9, jikan:2},
