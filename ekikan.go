@@ -1,5 +1,7 @@
 package main
 
+import "math"
+
 // Return distance between two directly connected stations
 // Ex: KyoriWoHyoji("myogadani", "shinotsuka") -> "茗荷谷駅と新大塚駅までは1.2kmです"
 // Ex: KyoriWoHyoji("myogadani", "Not directly connected") -> "茗荷谷駅と新大塚駅はつながっていません”
@@ -26,6 +28,8 @@ func (g *GlobalEkikan) GetEkikanKyori(station1, station2 string) float64 {
 		if (ekikan.kiten == station1  && ekikan.shuten == station2) ||
 			(ekikan.kiten == station2    && ekikan.shuten == station1) {
 			return ekikan.kyori
+		} else {
+			return math.Inf(+1)
 		}
 	}
 
