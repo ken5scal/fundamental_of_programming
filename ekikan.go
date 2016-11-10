@@ -16,6 +16,10 @@ func (g *GlobalEkikan) GetEkikanKyori(station1, station2 string) float64 {
 	return 0
 }
 
+type GlobalEkikan struct {
+	ekikanList []Ekikan
+}
+
 var Ekikan_List = [] Ekikan{
 	{kiten:"代々木上原", shuten:"代々木公園", keiyu:"千代田線", kyori:1.0, jikan:2},
 	{kiten:"代々木公園", shuten:"明治神宮前", keiyu:"千代田線", kyori:1.2, jikan:2},
