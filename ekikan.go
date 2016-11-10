@@ -23,15 +23,30 @@ type Ekikan struct {
 // Ex: &g{list: Ekikan_List}.GetEkikanKyori("新大塚", "茗荷谷") -> 1.2
 // Ex: &g{list: Ekikan_List}.GetEkikanKyori("茗荷谷", "**Non Direct Connection**") -> infinity
 func (g *GlobalEkikan) GetEkikanKyori(station1, station2 string) float64 {
-
 	for _, ekikan := range g.ekikanList {
 		if (ekikan.kiten == station1  && ekikan.shuten == station2) ||
-			(ekikan.kiten == station2    && ekikan.shuten == station1) {
+			(ekikan.kiten == station2 && ekikan.shuten == station1) {
 			return ekikan.kyori
 		}
 	}
 
 	return math.Inf(+1)
+
+	// Recursive Method on Below
+	//if cap(g.ekikanList) == 0 {
+	//	return math.Inf(+1)
+	//}
+	//
+	//ekikan := g.ekikanList[0]
+	//
+	//if ekikan.kiten == station1 && ekikan.shuten == station2 {
+	//	return ekikan.kyori
+	//} else if ekikan.kiten == station2 && ekikan.shuten == station1 {
+	//	return ekikan.kyori
+	//} else {
+	//	g.ekikanList = g.ekikanList[1:]
+	//	return g.GetEkikanKyori(station1, station2)
+	//}
 }
 
 type GlobalEkikan struct {
