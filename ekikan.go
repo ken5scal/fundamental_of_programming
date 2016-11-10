@@ -28,12 +28,10 @@ func (g *GlobalEkikan) GetEkikanKyori(station1, station2 string) float64 {
 		if (ekikan.kiten == station1  && ekikan.shuten == station2) ||
 			(ekikan.kiten == station2    && ekikan.shuten == station1) {
 			return ekikan.kyori
-		} else {
-			return math.Inf(+1)
 		}
 	}
 
-	return 0
+	return math.Inf(+1)
 }
 
 type GlobalEkikan struct {
