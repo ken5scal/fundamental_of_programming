@@ -1,5 +1,13 @@
 package main
 
+// Return distance between two directly connected stations
+// Ex: KyoriWoHyoji("myogadani", "shinotsuka") -> "茗荷谷駅と新大塚駅までは1.2kmです"
+// Ex: KyoriWoHyoji("myogadani", "Not directly connected") -> "茗荷谷駅と新大塚駅はつながっていません”
+// Ex: KyoriWoHyoji("myogadani", "I dont exist") -> "I dont existという駅は存在しません”
+func KyoriWoHyoji(station1, station2 string) string {
+	return ""
+}
+
 type Ekikan struct {
 	kiten  string
 	shuten string
@@ -10,7 +18,7 @@ type Ekikan struct {
 
 // Get Distance between two stations with Kanji Input
 // Ex: &g{list: Ekikan_List}.GetEkikanKyori("茗荷谷", "新大塚") -> 1.2
-// Ex: &g{list: Ekikan_List}.GetEkikanKyori("茗荷谷新大塚", "") -> 1.2
+// Ex: &g{list: Ekikan_List}.GetEkikanKyori("新大塚", "茗荷谷") -> 1.2
 // Ex: &g{list: Ekikan_List}.GetEkikanKyori("茗荷谷", "**Non Direct Connection**") -> infinity
 func (g *GlobalEkikan) GetEkikanKyori(station1, station2 string) float64 {
 	return 0
