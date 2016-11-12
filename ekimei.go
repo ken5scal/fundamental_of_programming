@@ -1,5 +1,6 @@
 package main
 
+var GlobalEkimeiList = &GlobalEkimei{EkimeiList: Ekimei_List}
 
 type Ekimei struct {
 	Kanji   string

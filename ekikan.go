@@ -12,8 +12,13 @@ var GlobalEkikanList = &GlobalEkikan{ekikanList: Ekikan_List}
 // Ex: KyoriWoHyoji("myogadani", "Not directly connected") -> "茗荷谷駅と新大塚駅はつながっていません”
 // Ex: KyoriWoHyoji("myogadani", "I dont exist") -> "I dont existという駅は存在しません”
 func KyoriWoHyoji(station1, station2 string) string {
-	kyori := GlobalEkikanList.GetEkikanKyori(station1, station2)
-	return fmt.Sprintf("%vと%vまでは%vkmです\n", station1, station2, kyori)
+	station1_jp := GlobalEkimeiList.RomajiToKanji(station1)
+	station2_jp := GlobalEkimeiList.RomajiToKanji(station2)
+	kyori := GlobalEkikanList.GetEkikanKyori(station1_jp, station2_jp)
+	if kyori != math.Inf(+1) {
+		return fmt.Sprintf("%v駅と%v駅までは%vkmです", station1_jp, station2_jp, kyori)
+	}
+	return fmt.Sprintf("%v駅と%v駅はつながっていません", station1_jp, station2_jp)
 }
 
 type Ekikan struct {
