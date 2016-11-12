@@ -1,5 +1,6 @@
 package main
 
+
 type Ekimei struct {
 	Kanji   string
 	Kana    string
@@ -13,13 +14,13 @@ func (e *Ekimei) Hyoji() string {
 	return e.Shozoku + ", " + e.Kanji + "(" + e.Kana + ")"
 }
 
-type GlobalEkimeiList struct {
+type GlobalEkimei struct {
 	EkimeiList []Ekimei
 }
 
 // Convert ローマ字 to 漢字
 // Ex: &g{list: global_ekimei_list}.RomajiToKanji("myogadani") ->　茗荷谷
-func (g *GlobalEkimeiList) RomajiToKanji(romaji string) string {
+func (g *GlobalEkimei) RomajiToKanji(romaji string) string {
 	for _, ekimei := range g.EkimeiList {
 		if ekimei.Romaji == romaji {
 			return ekimei.Kanji

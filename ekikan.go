@@ -1,13 +1,19 @@
 package main
 
-import "math"
+import (
+	"math"
+	"fmt"
+)
+
+var GlobalEkikanList = &GlobalEkikan{ekikanList: Ekikan_List}
 
 // Return distance between two directly connected stations
 // Ex: KyoriWoHyoji("myogadani", "shinotsuka") -> "茗荷谷駅と新大塚駅までは1.2kmです"
 // Ex: KyoriWoHyoji("myogadani", "Not directly connected") -> "茗荷谷駅と新大塚駅はつながっていません”
 // Ex: KyoriWoHyoji("myogadani", "I dont exist") -> "I dont existという駅は存在しません”
 func KyoriWoHyoji(station1, station2 string) string {
-	return ""
+	kyori := GlobalEkikanList.GetEkikanKyori(station1, station2)
+	return fmt.Sprintf("%vと%vまでは%vkmです\n", station1, station2, kyori)
 }
 
 type Ekikan struct {

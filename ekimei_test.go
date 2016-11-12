@@ -14,7 +14,7 @@ func TestHyoji(t *testing.T) {
 }
 
 func TestGlobalEkimeiList_RomajiToKanji(t *testing.T) {
-	sut := &GlobalEkimeiList{EkimeiList: Ekimei_List}
+	sut := &GlobalEkimei{EkimeiList: Ekimei_List}
 	actual := sut.RomajiToKanji("myogadani")
 	expected := "茗荷谷"
 	if actual != expected {
@@ -23,7 +23,7 @@ func TestGlobalEkimeiList_RomajiToKanji(t *testing.T) {
 }
 
 func TestRomajiToKanjiWithUnmatchedInput(t *testing.T) {
-	sut := &GlobalEkimeiList{}
+	sut := &GlobalEkimei{}
 	actual := sut.RomajiToKanji("IdoNotExist")
 	expected := ""
 	if actual != expected {
