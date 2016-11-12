@@ -14,6 +14,13 @@ var GlobalEkikanList = &GlobalEkikan{ekikanList: Ekikan_List}
 func KyoriWoHyoji(station1, station2 string) string {
 	station1_jp := GlobalEkimeiList.RomajiToKanji(station1)
 	station2_jp := GlobalEkimeiList.RomajiToKanji(station2)
+
+	if station1_jp == ""  {
+		return fmt.Sprintf("%vという駅は存在しません", station1)
+	} else if station2_jp == "" {
+		return fmt.Sprintf("%vという駅は存在しません", station2)
+	}
+
 	kyori := GlobalEkikanList.GetEkikanKyori(station1_jp, station2_jp)
 	if kyori != math.Inf(+1) {
 		return fmt.Sprintf("%v駅と%v駅までは%vkmです", station1_jp, station2_jp, kyori)

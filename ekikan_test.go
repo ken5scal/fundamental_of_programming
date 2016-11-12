@@ -54,4 +54,9 @@ func Test_KyoriWoHyoji_DoNot_Exist(t *testing.T) {
 	if actual != expected {
 		t.Errorf("got %v instead of %v", actual, expected)
 	}
+
+	actual = KyoriWoHyoji("I dont exist", "myogadani")
+	if actual != expected {
+		t.Errorf("got %v instead of %v", actual, expected)
+	}
 }
