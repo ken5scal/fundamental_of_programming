@@ -11,3 +11,10 @@ type Eki struct {
 func MakeEkiList(g GlobalEkimei) []Eki {
 	return &Eki{}
 }
+
+// kiten should be Romaji!
+// kiten's saitan_kyori should be 0
+// kiten's temae_list should only contain kiten itself
+func Shokika(eki_list []Eki, kiten string) {
+
+}
