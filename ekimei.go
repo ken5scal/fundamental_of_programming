@@ -19,6 +19,12 @@ type GlobalEkimei struct {
 	EkimeiList []Ekimei
 }
 
+// Sort EkimeiList in ascending order and remove any duplicated station
+// ex: &g{list: global_ekimei_list}.Seiretsu() -> sorted global_ekimei_list
+func (g *GlobalEkimei) Seiretsu() []Ekimei {
+	return &Ekimei{}
+}
+
 // Convert ローマ字 to 漢字
 // Ex: &g{list: global_ekimei_list}.RomajiToKanji("myogadani") ->　茗荷谷
 func (g *GlobalEkimei) RomajiToKanji(romaji string) string {
