@@ -15,3 +15,9 @@ func Test_MakeEkiList(t *testing.T) {
 		t.Errorf("got %v instead of %v", actual, expected)
 	}
 }
+
+func Test_Shokika(t *testing.T) {
+	if actual != expected {
+		t.Errorf("got %v instead of %v", actual, expected)
+	}
+}
