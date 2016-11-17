@@ -7,8 +7,9 @@ type Eki struct {
 }
 
 // return []Eki's temae_list(should be empty list)
-// Ex: MakeEkiList(&GlobalEkimei{EkimeiList: Ekimei_List}) -> return Eki
-func MakeEkiList(g GlobalEkimei) []Eki {
+// Ex: MakeEkiList(&GlobalEkimei{EkimeiList: Ekimei_List}) -> return listEki
+// 		-> return Eki List with name: Kanji, saitan_kyoei inf, temae_list: empty list
+func MakeEkiList(g *GlobalEkimei) []Eki {
 	return []Eki{}
 }
 

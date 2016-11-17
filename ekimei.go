@@ -22,7 +22,7 @@ type GlobalEkimei struct {
 // Sort EkimeiList in ascending order and remove any duplicated station
 // ex: &g{list: global_ekimei_list}.Seiretsu() -> sorted global_ekimei_list
 func (g *GlobalEkimei) Seiretsu() []Ekimei {
-	return &Ekimei{}
+	return []Ekimei{}
 }
 
 // Convert ローマ字 to 漢字
