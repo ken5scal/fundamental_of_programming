@@ -18,15 +18,15 @@ func Test_MakeEkiList(t *testing.T) {
 		t.Errorf("got actual length %v instead of %v", len(actual), len(expected))
 	}
 
-	for i, eki := range expected {
-		eki_actual := actual[i]
-		if eki.namae != eki_actual.namae {
-			t.Errorf("got actual %v instead of %v", eki_actual.namae, eki.namae)
+	for i, eki := range actual {
+		eki_expected := expected[i]
+		if eki.namae != eki_expected.namae {
+			t.Errorf("got actual %v instead of %v", eki_expected.namae, eki.namae)
 		}
-		if eki_actual.saitan_kyori != math.Inf(+1) {
+		if eki_expected.saitan_kyori != math.Inf(+1) {
 			t.Error("saitankyori is supposed to be +inf")
 		}
-		if len(eki_actual.temae_list) != 0 {
+		if len(eki_expected.temae_list) != 0 {
 			t.Error("temae list is supposed to be empty list")
 		}
 	}
