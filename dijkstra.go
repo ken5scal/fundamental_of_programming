@@ -29,6 +29,6 @@ func MakeEkiList(g *GlobalEkimei) []Eki {
 // kiten's temae_list should only contain kiten itself
 func Shokika(eki_list []Eki, kiten string) []Eki {
 	eki_list[0].saitan_kyori = 0
-
-	return []Eki{}
+	eki_list[0].temae_list = append(eki_list[0].temae_list, kiten)
+	return eki_list
 }
