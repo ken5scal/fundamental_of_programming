@@ -2,6 +2,7 @@ package main
 
 import (
 	"testing"
+	"fmt"
 )
 
 func TestHyoji(t *testing.T) {
@@ -34,4 +35,5 @@ func TestRomajiToKanjiWithUnmatchedInput(t *testing.T) {
 func TestSeiretsu(t *testing.T) {
 	sut := &GlobalEkimei{EkimeiList: Ekimei_List}
 	sut.Seiretsu()
+	fmt.Println(sut.EkimeiList)
 }

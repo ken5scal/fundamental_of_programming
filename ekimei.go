@@ -21,19 +21,29 @@ type GlobalEkimei struct {
 
 // Sort EkimeiList in ascending order and remove any duplicated station
 // ex: &g{list: global_ekimei_list}.Seiretsu() -> sorted global_ekimei_list
-func (g *GlobalEkimei) Seiretsu() *GlobalEkimei {
+func (g *GlobalEkimei) Seiretsu() {
+	var new_list []Ekimei
 
-	for i := 1; i < len(g.EkimeiList); i++ {
-		currentValue := g.EkimeiList[i]
+	list := g.EkimeiList
+	for i := 1; i < len(list); i++ {
+		currentValue := list[i]
 		currentPosition := i
-		for currentPosition > 0 && g.EkimeiList[currentPosition - 1].Kana > currentValue.Kana {
-			g.EkimeiList[currentPosition] = g.EkimeiList[currentPosition - 1]
+		for currentPosition > 0 && list[currentPosition - 1].Kana > currentValue.Kana {
+			list[currentPosition] = list[currentPosition - 1]
 			currentPosition = currentPosition - 1
 		}
 
-		g.EkimeiList[currentPosition] = currentValue
+		list[currentPosition] = currentValue
 	}
-	return g
+
+	last_ekimei := ""
+	for _, ekimei := range list {
+		if ekimei.Kana != last_ekimei {
+			new_list = append(new_list, ekimei)
+		}
+		last_ekimei = ekimei.Kana
+	}
+	g.EkimeiList = new_list
 }
 
 // Convert ローマ字 to 漢字
