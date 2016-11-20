@@ -3,6 +3,7 @@ package main
 import (
 	"testing"
 	"math"
+	"math/rand"
 )
 
 func Test_MakeEkiList(t *testing.T) {
@@ -33,17 +34,23 @@ func Test_MakeEkiList(t *testing.T) {
 }
 
 func Test_Shokika(t *testing.T) {
-	//var eki_list []Eki
-	//kiten := "hoge"
-	//
-	//for _, eki := range Shokika(eki_list, kiten) {
-	//	if eki.namae == kiten {
-	//		if eki.saitan_kyori != 0 {
-	//			t.Errorf("kiten %v's saitan kyori is %v instead of %v", kiten, eki.saitan_kyori, 0)
-	//		} else if cap(eki.temae_list) != 1 || !containes(eki.temae_list, kiten) {
-	//			t.Error("temae_list should only contain kiten itself.")
-	//		}
-	//	}
-	//}
+	index := rand.Intn(len(Ekimei_List))
+	expected_ekimei := Ekimei_List[index]
 
+	eki_list := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
+	actual := Shokika(eki_list, expected_ekimei.Kanji)
+
+	for i, actual_eki := range actual {
+		if i == index {
+			if expected_ekimei.Kanji != actual_eki.namae {
+				t.Errorf("got actual %v instead of %v", expected_ekimei.Kanji, actual_eki.namae)
+			} else if 0 != actual_eki.saitan_kyori {
+				t.Errorf("Saitan Kyori is not 0, but %v", actual_eki.saitan_kyori)
+			} else if 1 != len(actual_eki.temae_list) {
+				t.Errorf("Length of actual eki is not 1, but %v",len(actual_eki.temae_list))
+			} else if expected_ekimei.Kanji != actual_eki.temae_list[0] {
+				t.Errorf("got temae_list %v instead of %v", expected_ekimei.Kanji, actual_eki.temae_list[0])
+			}
+		}
+	}
 }
