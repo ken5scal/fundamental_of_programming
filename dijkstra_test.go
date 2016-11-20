@@ -3,7 +3,9 @@ package main
 import (
 	"testing"
 	"math"
+	"fmt"
 	"math/rand"
+	"time"
 )
 
 func Test_MakeEkiList(t *testing.T) {
@@ -34,20 +36,20 @@ func Test_MakeEkiList(t *testing.T) {
 }
 
 func Test_Shokika(t *testing.T) {
+	rand.Seed(time.Now().UnixNano())
 	index := rand.Intn(len(Ekimei_List))
+
 	expected_ekimei := Ekimei_List[index]
+	sut := Shokika(MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List}), expected_ekimei.Kanji)
 
-	eki_list := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
-	actual := Shokika(eki_list, expected_ekimei.Kanji)
-
-	for i, actual_eki := range actual {
+	for i, actual_eki := range sut {
 		if i == index {
 			if expected_ekimei.Kanji != actual_eki.namae {
 				t.Errorf("got actual %v instead of %v", expected_ekimei.Kanji, actual_eki.namae)
 			} else if 0 != actual_eki.saitan_kyori {
 				t.Errorf("Saitan Kyori is not 0, but %v", actual_eki.saitan_kyori)
 			} else if 1 != len(actual_eki.temae_list) {
-				t.Errorf("Length of actual eki is not 1, but %v",len(actual_eki.temae_list))
+				t.Errorf("Length of actual eki is not 1, but %v", len(actual_eki.temae_list))
 			} else if expected_ekimei.Kanji != actual_eki.temae_list[0] {
 				t.Errorf("got temae_list %v instead of %v", expected_ekimei.Kanji, actual_eki.temae_list[0])
 			}
