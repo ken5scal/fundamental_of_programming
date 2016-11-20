@@ -40,7 +40,7 @@ func Test_Shokika(t *testing.T) {
 
 	expected_ekimei := Ekimei_List[index]
 	sut := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
-	sut.Shokika(expected_ekimei.Kanji)
+	(*sut).Shokika(expected_ekimei.Kanji)
 
 	for i, actual_eki := range sut.eki_list {
 		if i == index {
