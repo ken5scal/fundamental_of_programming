@@ -3,7 +3,6 @@ package main
 import (
 	"testing"
 	"math"
-	"fmt"
 	"math/rand"
 	"time"
 )
@@ -17,11 +16,11 @@ func Test_MakeEkiList(t *testing.T) {
 
 	actual := MakeEkiList(g)
 
-	if len(actual) != len(expected) {
-		t.Errorf("got actual length %v instead of %v", len(actual), len(expected))
+	if len(actual.eki_list) != len(expected) {
+		t.Errorf("got actual length %v instead of %v", len(actual.eki_list), len(expected))
 	}
 
-	for i, eki := range actual {
+	for i, eki := range actual.eki_list {
 		eki_expected := expected[i]
 		if eki.namae != eki_expected.namae {
 			t.Errorf("got actual %v instead of %v", eki_expected.namae, eki.namae)
@@ -40,9 +39,10 @@ func Test_Shokika(t *testing.T) {
 	index := rand.Intn(len(Ekimei_List))
 
 	expected_ekimei := Ekimei_List[index]
-	sut := Shokika(MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List}), expected_ekimei.Kanji)
+	sut := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
+	sut.Shokika(expected_ekimei.Kanji)
 
-	for i, actual_eki := range sut {
+	for i, actual_eki := range sut.eki_list {
 		if i == index {
 			if expected_ekimei.Kanji != actual_eki.namae {
 				t.Errorf("got actual %v instead of %v", expected_ekimei.Kanji, actual_eki.namae)
