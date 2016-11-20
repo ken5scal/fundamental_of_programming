@@ -30,3 +30,8 @@ func TestRomajiToKanjiWithUnmatchedInput(t *testing.T) {
 		t.Error("Actual value is not Empty")
 	}
 }
+
+func TestSeiretsu(t *testing.T) {
+	sut := &GlobalEkimei{EkimeiList: Ekimei_List}
+	sut.Seiretsu()
+}
