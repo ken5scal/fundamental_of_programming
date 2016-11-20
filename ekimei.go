@@ -23,10 +23,10 @@ type GlobalEkimei struct {
 // ex: &g{list: global_ekimei_list}.Seiretsu() -> sorted global_ekimei_list
 func (g *GlobalEkimei) Seiretsu() *GlobalEkimei {
 
-	for i := 1; i < g.EkimeiList; i++ {
+	for i := 1; i < len(g.EkimeiList); i++ {
 		currentValue := g.EkimeiList[i]
 		currentPosition := i
-		for currentPosition > 0 && g.EkimeiList[currentPosition - 1] > currentValue {
+		for currentPosition > 0 && g.EkimeiList[currentPosition - 1].Kana > currentValue.Kana {
 			g.EkimeiList[currentPosition] = g.EkimeiList[currentPosition - 1]
 			currentPosition = currentPosition - 1
 		}
