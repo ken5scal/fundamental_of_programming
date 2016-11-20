@@ -1,6 +1,8 @@
 package main
 
-import "math"
+import (
+	"math"
+)
 
 type Eki struct {
 	namae        string
@@ -28,10 +30,10 @@ func MakeEkiList(g *GlobalEkimei) []Eki {
 // kiten's saitan_kyori should be 0
 // kiten's temae_list should only contain kiten itself
 func Shokika(eki_list []Eki, kiten string) []Eki {
-	for _, eki := range eki_list {
-		if eki.namae == kiten {
-			eki.saitan_kyori = 0
-			eki.temae_list = append(eki.temae_list, kiten)
+	for i := range eki_list {
+		if eki_list[i].namae == kiten {
+			eki_list[i].saitan_kyori = 0
+			eki_list[i].temae_list = append(eki_list[i].temae_list, kiten)
 		}
 	}
 	return eki_list
