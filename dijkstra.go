@@ -43,7 +43,7 @@ func (e *EkiList) Shokika(kiten string) {
 }
 
 // Check if p and q are connected, and return edited q
-func Kousin1(p *Eki, q *Eki) *Eki {
+func Kousin1(p Eki, q Eki) Eki {
 	if GlobalEkikanList.GetEkikanKyori(p.namae, q.namae) == math.Inf(+1) {
 		return q
 	}
@@ -53,4 +53,11 @@ func Kousin1(p *Eki, q *Eki) *Eki {
 		q.temae_list = append(q.temae_list, q.namae, p.namae)
 	}
 	return q
+}
+
+func Koushin(p *Eki, v *EkiList) *EkiList{
+	for _, q := range v.eki_list {
+		Kousin1(p, &q)
+	}
+	return v
 }

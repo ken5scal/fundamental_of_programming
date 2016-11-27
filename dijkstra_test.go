@@ -5,6 +5,7 @@ import (
 	"math"
 	"math/rand"
 	"time"
+	"fmt"
 )
 
 func Test_MakeEkiList(t *testing.T) {
@@ -55,4 +56,13 @@ func Test_Shokika(t *testing.T) {
 			}
 		}
 	}
+}
+
+func Test_Koushin1(t *testing.T) {
+	expected_ekimei := Ekimei_List[0]
+	sut := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
+	sut.Shokika(expected_ekimei.Kanji)
+
+	fmt.Println(sut)
+	Kousin1(sut.eki_list[0], sut.eki_list[1])
 }
