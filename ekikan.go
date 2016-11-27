@@ -28,18 +28,6 @@ func KyoriWoHyoji(station1, station2 string) string {
 	return fmt.Sprintf("%v駅と%v駅はつながっていません", station1_jp, station2_jp)
 }
 
-func IsEkiConnected(station1_kanji, station2_kanji string) (bool, error) {
-
-	if station1_kanji == "" {
-		return false, fmt.Errorf("%vという駅は存在しません", station1_kanji);
-	} else if station2_kanji == "" {
-		return false, fmt.Errorf("%vという駅は存在しません", station2_kanji);
-	}
-
-	kyori := GlobalEkikanList.GetEkikanKyori(station1_kanji, station2_kanji)
-	return kyori != math.Inf(+1), nil
-}
-
 type Ekikan struct {
 	kiten  string
 	shuten string
