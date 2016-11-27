@@ -5,7 +5,7 @@ import (
 	"math"
 	"math/rand"
 	"time"
-	"fmt"
+	"sort"
 )
 
 func Test_MakeEkiList(t *testing.T) {
@@ -59,10 +59,24 @@ func Test_Shokika(t *testing.T) {
 }
 
 func Test_Koushin1(t *testing.T) {
-	expected_ekimei := Ekimei_List[0]
-	sut := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
-	sut.Shokika(expected_ekimei.Kanji)
+	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
+	ekiList.Shokika(Ekimei_List[0].Kanji) // 代々木上原を起点に。
+	sut := ekiList.eki_list[1]
+	p := ekiList.eki_list[0]
 
-	fmt.Println(sut)
-	Kousin1(sut.eki_list[0], sut.eki_list[1])
+	sut.Kousin1(p)
+	if sut.saitan_kyori != 0 {
+		t.Errorf("Got actual %v instead of %v", p.saitan_kyori, sut.saitan_kyori)
+	}
+
+	sort.Strings(sut.temae_list)
+	i := sort.SearchStrings(sut.temae_list, Ekimei_List[0].Kanji)
+	j := sort.SearchStrings(sut.temae_list, Ekimei_List[1].Kanji)
+	if i >= len(sut.temae_list) || sut.temae_list[i] != Ekimei_List[0].Kanji {
+		t.Errorf("Supporsed to contain %v in temae_list", Ekimei_List[0].Kanji)
+	}
+
+	if j >= len(sut.temae_list) || sut.temae_list[j] != Ekimei_List[1].Kanji {
+		t.Errorf("Supporsed to contain %v in temae_list", Ekimei_List[1].Kanji)
+	}
 }
