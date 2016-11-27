@@ -69,3 +69,8 @@
 * DRY?　
 * 異なる部分を引数として受け取るような関数を定義
 * higher-order function: 高階関数。関数を引数として受け取る関数のこと
+* closure: 関数を返す関数
+
+## 型の一般化
+* polymorphishm: 多層性。どのような型でも良いという性質
+* polymorphic function: 多相関数。型変数を含む型(多相型)を持つ関数のこと
