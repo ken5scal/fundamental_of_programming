@@ -5,7 +5,7 @@ import (
 )
 
 type Eki struct {
-	namae        string
+	namae        string // 漢字
 	saitan_kyori float64
 	temae_list   []string
 }
