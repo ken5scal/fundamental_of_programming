@@ -2,6 +2,7 @@ package main
 
 import (
 	"math"
+	"fmt"
 )
 
 type Eki struct {
@@ -53,10 +54,13 @@ func (q *Eki)Kousin1(p Eki) {
 		q.temae_list = append(q.temae_list, q.namae, p.namae)
 	}
 }
-//
-//func Koushin(p Eki, v EkiList) EkiList{
-//	for _, q := range v.eki_list {
-//		Kousin1(p, q)
-//	}
-//	return v
-//}
+
+func (v *EkiList) Koushin(p Eki) *EkiList {
+	for i, q := range v.eki_list {
+		q.Kousin1(p)
+		v.eki_list[i] = q
+	}
+	return v
+}
+
+

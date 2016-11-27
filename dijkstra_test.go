@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"time"
 	"sort"
+	"fmt"
 )
 
 func Test_MakeEkiList(t *testing.T) {
@@ -79,4 +80,15 @@ func Test_Koushin1(t *testing.T) {
 	if j >= len(sut.temae_list) || sut.temae_list[j] != Ekimei_List[1].Kanji {
 		t.Errorf("Supporsed to contain %v in temae_list", Ekimei_List[1].Kanji)
 	}
+}
+
+func Test_koushin(t *testing.T) {
+	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
+	ekiList.Shokika(ekiList.eki_list[0].namae)
+	p := ekiList.eki_list[0]
+	fmt.Println(p)
+	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
+	fmt.Println(sut)
+	sut.Koushin(p)
+	fmt.Println(sut)
 }
