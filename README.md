@@ -76,3 +76,4 @@
 * polymorphic function: 多相関数。型変数を含む型(多相型)を持つ関数のこと
 
 ## 局所関数定義
+* letで定義。golangにはなさそう
