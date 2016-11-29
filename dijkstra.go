@@ -44,7 +44,7 @@ func (e *EkiList) Shokika(kiten string) {
 
 // Check if p and q are connected
 // If connected, then update q's saitankyori / temae list
-func (q *Eki)Kousin1(p Eki) {
+func (q *Eki)kousin1(p Eki) {
 	if GlobalEkikanList.GetEkikanKyori(p.namae, q.namae) == math.Inf(+1) {
 		return
 	}
@@ -58,10 +58,8 @@ func (q *Eki)Kousin1(p Eki) {
 // Repat kousin1 for unfixed Eki lists
 func (v *EkiList) Koushin(p Eki) *EkiList {
 	for i, q := range v.eki_list {
-		q.Kousin1(p)
+		q.kousin1(p)
 		v.eki_list[i] = q
 	}
 	return v
 }
-
-
