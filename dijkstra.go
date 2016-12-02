@@ -36,8 +36,10 @@ func MakeEkiList(g *GlobalEkimei) *EkiList {
 func (e *EkiList) Shokika(kiten string) {
 	for i := range e.eki_list {
 		if e.eki_list[i].namae == kiten {
-			e.eki_list[i].saitan_kyori = 0
-			e.eki_list[i].temae_list = append(e.eki_list[i].temae_list, kiten)
+			func(eki Eki) {
+				e.eki_list[i].saitan_kyori = 0
+				e.eki_list[i].temae_list = append(e.eki_list[i].temae_list, kiten)
+			}
 		}
 	}
 }
