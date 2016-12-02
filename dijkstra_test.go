@@ -65,7 +65,7 @@ func Test_Koushin1(t *testing.T) {
 	sut := ekiList.eki_list[1]
 	p := ekiList.eki_list[0]
 
-	sut.kousin1(p)
+	sut.Kousin1(p)
 	if sut.saitan_kyori != 0 {
 		t.Errorf("Got actual %v instead of %v", p.saitan_kyori, sut.saitan_kyori)
 	}
