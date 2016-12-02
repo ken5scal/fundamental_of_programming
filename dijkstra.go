@@ -34,19 +34,20 @@ func MakeEkiList(g *GlobalEkimei) *EkiList {
 // kiten's saitan_kyori should be 0
 // kiten's temae_list should only contain kiten itself
 func (e *EkiList) Shokika(kiten string) {
+	hoge := func(i int, eki Eki) {
+		eki.saitan_kyori = 0
+		eki.temae_list = append(eki.temae_list, kiten)
+	}
 	for i := range e.eki_list {
 		if e.eki_list[i].namae == kiten {
-			func(eki Eki) {
-				e.eki_list[i].saitan_kyori = 0
-				e.eki_list[i].temae_list = append(e.eki_list[i].temae_list, kiten)
-			}
+			hoge(i, e.eki_list[i])
 		}
 	}
 }
 
 // Check if p and q are connected
 // If connected, then update q's saitankyori / temae list
-func (q *Eki)kousin1(p Eki) {
+func (q *Eki)Kousin1(p Eki) {
 	if GlobalEkikanList.GetEkikanKyori(p.namae, q.namae) == math.Inf(+1) {
 		return
 	}
@@ -60,8 +61,10 @@ func (q *Eki)kousin1(p Eki) {
 // Repat kousin1 for unfixed Eki lists
 func (v *EkiList) Koushin(p Eki) *EkiList {
 	for i, q := range v.eki_list {
-		q.kousin1(p)
+		q.Kousin1(p)
 		v.eki_list[i] = q
 	}
 	return v
 }
+
+
