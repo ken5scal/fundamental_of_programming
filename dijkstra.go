@@ -58,6 +58,11 @@ func (q *Eki)Kousin1(p Eki) {
 	}
 }
 
+// Returns Stations that have minimum Distance and  Other Stations
+func (q *Eki) SaitanWoBunri() (Eki, []Eki) {
+	return nil, nil
+}
+
 // Repat kousin1 for unfixed Eki lists
 func (v *EkiList) Koushin(p Eki) *EkiList {
 	for i, q := range v.eki_list {
