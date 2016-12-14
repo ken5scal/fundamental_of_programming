@@ -33,14 +33,15 @@ func MakeEkiList(g *GlobalEkimei) *EkiList {
 // kiten should be Romaji!
 // kiten's saitan_kyori should be 0
 // kiten's temae_list should only contain kiten itself
-func (e *EkiList) Shokika(kiten string) {
-	hoge := func(i int, eki Eki) {
+func (e *EkiList) Shokika(kitenName string) {
+	KitenEki := func(eki Eki) Eki {
 		eki.saitan_kyori = 0
-		eki.temae_list = append(eki.temae_list, kiten)
+		eki.temae_list = append(eki.temae_list, kitenName)
+		return eki
 	}
-	for i := range e.eki_list {
-		if e.eki_list[i].namae == kiten {
-			hoge(i, e.eki_list[i])
+	for i, eki := range e.eki_list {
+		if eki.namae == kitenName {
+			e.eki_list[i] = KitenEki(eki)
 		}
 	}
 }
@@ -60,7 +61,7 @@ func (q *Eki)Kousin1(p Eki) {
 
 // Returns Stations that have minimum Distance and  Other Stations
 func (q *Eki) SaitanWoBunri() (Eki, []Eki) {
-	return nil, nil
+	return Eki{}, []Eki{}
 }
 
 // Repat kousin1 for unfixed Eki lists
