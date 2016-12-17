@@ -49,16 +49,15 @@ func (e *EkiList) Shokika(kitenName string) {
 // Check if p and q are connected
 // If connected, then update q's saitankyori / temae list otherwise leave as it is
 func (q *Eki)Kousin1(p Eki) {
-	if GlobalEkikanList.GetEkikanKyori(p.namae, q.namae) == math.Inf(+1) {
+	kyori := GlobalEkikanList.GetEkikanKyori(p.namae, q.namae); if kyori == math.Inf(+1) {
 		return
 	}
 
 	if q.saitan_kyori > p.saitan_kyori {
-		q.saitan_kyori = p.saitan_kyori
+		q.saitan_kyori = p.saitan_kyori + kyori
 		q.temae_list = append(q.temae_list, q.namae, p.namae)
 	}
 }
-
 
 // Repeat kousin1 for unfixed Eki lists
 func Koushin(p Eki, v *EkiList) *EkiList {
