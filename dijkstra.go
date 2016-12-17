@@ -61,22 +61,22 @@ func (q *Eki)Kousin1(p Eki) {
 }
 
 // Repeat kousin1 for unfixed Eki lists
-func Koushin(p Eki, v *EkiList) *EkiList {
+func Koushin(p Eki, v *EkiList) {
 	for i, q := range v.eki_list {
 		q.Kousin1(p)
 		v.eki_list[i] = q
 	}
-	return v
 }
 
 // Returns Stations that have minimum Distance and  Other Stations
-func (v *EkiList) SaitanWoBunri() (*Eki, *[]Eki, error) {
+func SaitanWoBunri(v *EkiList) (*Eki, *EkiList, error) {
 	min_kyori := math.Inf(+1)
 	for i, eki := range v.eki_list {
 		if min_kyori > eki.saitan_kyori {
-			copy(v.eki_list[i:], v.eki_list[i+1:])
-			v.eki_list = append(v.eki_list[:i], v.eki_list[i+1:]...)
-			return &eki, &v.eki_list, nil
+			new_ekilist := make([]Eki, len(v.eki_list))
+			copy(new_ekilist, v.eki_list)
+			new_ekilist = append(new_ekilist[:i], new_ekilist[i + 1:]...)
+			return &eki, &EkiList{eki_list:new_ekilist}, nil
 		}
 	}
 	return nil, nil, errors.New("At least one of SaitanKyori should be Finite Number")

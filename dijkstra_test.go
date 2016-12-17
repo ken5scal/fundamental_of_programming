@@ -86,7 +86,7 @@ func Test_koushin(t *testing.T) {
 	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
 	ekiList.Shokika(ekiList.eki_list[0].namae)    // 代々木上原
 	sut := &EkiList{eki_list: ekiList.eki_list[1:]} // 代々木公園
-	fmt.Println(Koushin(ekiList.eki_list[0], sut))
+	Koushin(ekiList.eki_list[0], sut)
 
 	// sut[0](代々木公園) should have following parameters
 	expectedNamae := sut.eki_list[0].namae
@@ -110,32 +110,31 @@ func Test_koushin(t *testing.T) {
 func TestEkiList_SaitanWoBunri(t *testing.T) {
 	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
 	ekiList.Shokika(ekiList.eki_list[0].namae)    // 代々木上原
-	expectedP := ekiList.eki_list[0]
+	sut := &EkiList{eki_list: ekiList.eki_list[1:]} // 代々木公園
 
-	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
+	Koushin(ekiList.eki_list[0], sut)
+	actualP, newV, _ := SaitanWoBunri(sut)
 	fmt.Println(sut)
-	fmt.Printf("Expected P: %v\n", expectedP)
-
-	//expectedNamae := p.namae
-	//expectedSaitan := 1.0
-	//expectedTemaeList := []string{"代々木公園", "代々木上原"}
-
-	hoge := Koushin(expectedP, sut)
-	fmt.Printf("Hoge P: %v\n", hoge)
-	actualP, _, _ := hoge.SaitanWoBunri()
-	fmt.Printf("Expected P: %v\n", expectedP)
 	fmt.Printf("Actual P: %v\n", actualP)
+	fmt.Printf("New V: %v\n", newV)
 
-	//if actualP.namae != expectedNamae {
-	//	t.Errorf("got name %v instead of %v", actualP.namae, expectedNamae)
-	//}
-	//if actualP.saitan_kyori != expectedSaitan {
-	//	t.Errorf("got distance %v instead of %v", actualP.saitan_kyori, expectedSaitan)
-	//}
-	//for i, acutalTemae := range actualP.temae_list {
-	//	if acutalTemae != expectedTemaeList[i] {
-	//		t.Errorf("got temae %v instead of %v", acutalTemae, expectedNamae[i])
-	//		break
-	//	}
-	//}
+	expectedNamae := "代々木公園"
+	expectedSaitan := 1.0
+	expectedTemaeList := []string{"代々木公園", "代々木上原"}
+
+	if actualP.namae != expectedNamae {
+		t.Errorf("got name %v instead of %v", actualP.namae, expectedNamae)
+	}
+	if actualP.saitan_kyori != expectedSaitan {
+		t.Errorf("got distance %v instead of %v", actualP.saitan_kyori, expectedSaitan)
+	}
+	for i, acutalTemae := range actualP.temae_list {
+		if acutalTemae != expectedTemaeList[i] {
+			t.Errorf("got temae %v instead of %v", acutalTemae, expectedNamae[i])
+			break
+		}
+	}
+	if len(newV.eki_list) - 1 == len(sut.eki_list) {
+		t.Errorf("got new V length %v instead of %v", len(newV.eki_list), len(sut.eki_list))
+	}
 }
