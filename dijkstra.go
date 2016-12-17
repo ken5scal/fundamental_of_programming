@@ -2,6 +2,7 @@ package main
 
 import (
 	"math"
+	"errors"
 )
 
 type Eki struct {
@@ -69,16 +70,16 @@ func Koushin(p Eki, v *EkiList) *EkiList {
 }
 
 // Returns Stations that have minimum Distance and  Other Stations
-func (v *EkiList) SaitanWoBunri() (Eki, []Eki, error) {
+func (v *EkiList) SaitanWoBunri() (*Eki, *[]Eki, error) {
 	min_kyori := math.Inf(+1)
 	for i, eki := range v.eki_list {
 		if min_kyori > eki.saitan_kyori {
 			copy(v.eki_list[i:], v.eki_list[i+1:])
-			v.eki_list[len(v.eki_list) - 1] = nil
-			return eki, v.eki_list, nil
+			v.eki_list = append(v.eki_list[:i], v.eki_list[i+1:]...)
+			return &eki, &v.eki_list, nil
 		}
 	}
-	return nil, nil, error("At least one of SaitanKyori should be Finite Number")
+	return nil, nil, errors.New("At least one of SaitanKyori should be Finite Number")
 }
 
 

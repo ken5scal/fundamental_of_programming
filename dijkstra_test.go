@@ -91,3 +91,15 @@ func Test_koushin(t *testing.T) {
 	fmt.Println(sut)
 	fmt.Println(Koushin(p, sut))
 }
+
+func TestEkiList_SaitanWoBunri(t *testing.T) {
+	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
+	ekiList.Shokika(ekiList.eki_list[0].namae)	// 代々木上原
+	p := ekiList.eki_list[0]
+	fmt.Println(p)
+	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
+	fmt.Println(sut)
+	hoge := Koushin(p, sut)
+	fmt.Println(hoge)
+	fmt.Println(hoge.SaitanWoBunri())
+}
