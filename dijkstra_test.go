@@ -62,8 +62,8 @@ func Test_Shokika(t *testing.T) {
 func Test_Koushin1(t *testing.T) {
 	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
 	ekiList.Shokika(Ekimei_List[0].Kanji) // 代々木上原を起点に。
-	sut := ekiList.eki_list[1]
-	p := ekiList.eki_list[0]
+	p := ekiList.eki_list[0]	// 代々木上原
+	sut := ekiList.eki_list[1] // 代々木公園
 
 	sut.Kousin1(p)
 	if sut.saitan_kyori != 1.0 {
@@ -84,22 +84,58 @@ func Test_Koushin1(t *testing.T) {
 
 func Test_koushin(t *testing.T) {
 	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
-	ekiList.Shokika(ekiList.eki_list[0].namae)	// 代々木上原
-	p := ekiList.eki_list[0]
-	fmt.Println(p)
-	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
-	fmt.Println(sut)
-	fmt.Println(Koushin(p, sut))
+	ekiList.Shokika(ekiList.eki_list[0].namae)    // 代々木上原
+	sut := &EkiList{eki_list: ekiList.eki_list[1:]} // 代々木公園
+	fmt.Println(Koushin(ekiList.eki_list[0], sut))
+
+	// sut[0](代々木公園) should have following parameters
+	expectedNamae := sut.eki_list[0].namae
+	expectedSaitan := 1.0
+	expectedTemaeList := []string{"代々木公園", "代々木上原"}
+
+	if sut.eki_list[0].namae != expectedNamae {
+		t.Errorf("got name %v instead of %v", sut.eki_list[0].namae, expectedNamae)
+	}
+	if sut.eki_list[0].saitan_kyori != expectedSaitan {
+		t.Errorf("got distance %v instead of %v", sut.eki_list[0].saitan_kyori, expectedSaitan)
+	}
+	for i, acutalTemae := range sut.eki_list[0].temae_list {
+		if acutalTemae != expectedTemaeList[i] {
+			t.Errorf("got temae %v instead of %v", acutalTemae, expectedNamae[i])
+			break
+		}
+	}
 }
 
 func TestEkiList_SaitanWoBunri(t *testing.T) {
 	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
-	ekiList.Shokika(ekiList.eki_list[0].namae)	// 代々木上原
-	p := ekiList.eki_list[0]
-	fmt.Println(p)
+	ekiList.Shokika(ekiList.eki_list[0].namae)    // 代々木上原
+	expectedP := ekiList.eki_list[0]
+
 	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
 	fmt.Println(sut)
-	hoge := Koushin(p, sut)
-	fmt.Println(hoge)
-	fmt.Println(hoge.SaitanWoBunri())
+	fmt.Printf("Expected P: %v\n", expectedP)
+
+	//expectedNamae := p.namae
+	//expectedSaitan := 1.0
+	//expectedTemaeList := []string{"代々木公園", "代々木上原"}
+
+	hoge := Koushin(expectedP, sut)
+	fmt.Printf("Hoge P: %v\n", hoge)
+	actualP, _, _ := hoge.SaitanWoBunri()
+	fmt.Printf("Expected P: %v\n", expectedP)
+	fmt.Printf("Actual P: %v\n", actualP)
+
+	//if actualP.namae != expectedNamae {
+	//	t.Errorf("got name %v instead of %v", actualP.namae, expectedNamae)
+	//}
+	//if actualP.saitan_kyori != expectedSaitan {
+	//	t.Errorf("got distance %v instead of %v", actualP.saitan_kyori, expectedSaitan)
+	//}
+	//for i, acutalTemae := range actualP.temae_list {
+	//	if acutalTemae != expectedTemaeList[i] {
+	//		t.Errorf("got temae %v instead of %v", acutalTemae, expectedNamae[i])
+	//		break
+	//	}
+	//}
 }
