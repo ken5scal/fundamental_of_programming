@@ -47,7 +47,7 @@ func (e *EkiList) Shokika(kitenName string) {
 }
 
 // Check if p and q are connected
-// If connected, then update q's saitankyori / temae list
+// If connected, then update q's saitankyori / temae list otherwise leave as it is
 func (q *Eki)Kousin1(p Eki) {
 	if GlobalEkikanList.GetEkikanKyori(p.namae, q.namae) == math.Inf(+1) {
 		return
@@ -59,18 +59,21 @@ func (q *Eki)Kousin1(p Eki) {
 	}
 }
 
-// Returns Stations that have minimum Distance and  Other Stations
-func (q *Eki) SaitanWoBunri() (Eki, []Eki) {
-	return Eki{}, []Eki{}
-}
 
-// Repat kousin1 for unfixed Eki lists
-func (v *EkiList) Koushin(p Eki) *EkiList {
+// Repeat kousin1 for unfixed Eki lists
+func Koushin(p Eki, v *EkiList) *EkiList {
 	for i, q := range v.eki_list {
 		q.Kousin1(p)
 		v.eki_list[i] = q
 	}
 	return v
 }
+
+// Returns Stations that have minimum Distance and  Other Stations
+func (v *EkiList) SaitanWoBunri() (Eki, []Eki) {
+
+	return Eki{}, []Eki{}
+}
+
 
 
