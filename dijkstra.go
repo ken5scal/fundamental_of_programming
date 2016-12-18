@@ -3,7 +3,6 @@ package main
 import (
 	"math"
 	"errors"
-	"fmt"
 )
 
 type Eki struct {
@@ -100,9 +99,8 @@ func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
 	}
 
 	Koushin(p, new_v)
-	fmt.Printf("P: %v\n" ,p)
-	//fmt.Printf("new_v: %v\n" ,new_v)
-	Dijkstra_main(new_v, g)
+	dijkstra_v := Dijkstra_main(new_v, g)
+	dijkstra_v.eki_list = append(dijkstra_v.eki_list, Eki{namae:p.namae, saitan_kyori:p.saitan_kyori, temae_list:p.temae_list})
 
-	return new_v
+	return dijkstra_v
 }
