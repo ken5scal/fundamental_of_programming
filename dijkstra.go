@@ -57,6 +57,7 @@ func (q *Eki)Kousin1(p *Eki) {
 
 	if q.saitan_kyori > p.saitan_kyori {
 		q.saitan_kyori = p.saitan_kyori + kyori
+		fmt.Printf("q: %v, p: %v\n", q, p)
 		q.temae_list = append(q.temae_list, q.namae, p.namae)
 	}
 }
@@ -87,15 +88,14 @@ func SaitanWoBunri(v *EkiList) (*Eki, *EkiList, error) {
 // v: Undetermined Eki list
 // g: Global Ekikan
 func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
-	fmt.Println(len(v.eki_list))
-	if len(v.eki_list) == 0 {
-		return v
-	}
 	// 1) SaitanWobunri(v) -> p, v with stripped p
 	// 2) Koushin(p, v) -> updated min distance for every V element based on p
-	p, v, _ := SaitanWoBunri(v)
-	Koushin(p, v)
-	Dijkstra_main(v, g)
+	for len(v.eki_list) > 0 {
+		p, new_v, _ := SaitanWoBunri(v)
+		Koushin(p, new_v)
+		v = new_v
+		fmt.Println(v)
+	}
 
 	return v
 }

@@ -1,8 +1,8 @@
 package main
 
 func main() {
-	kiten := "shibuya"
-	syuten := "mitsukoshimae"
+	kiten := "mita"
+	syuten := "yushima"
 
 	ekimei_list := &GlobalEkimei{EkimeiList: Ekimei_List}
 	ekimei_list.Seiretsu()

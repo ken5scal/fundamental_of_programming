@@ -115,11 +115,6 @@ func TestDijkstra_main(t *testing.T) {
 	// eki list after shokika
 	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
 	Koushin(kiten, sut)
-	actualP, newV, _ := SaitanWoBunri(sut)
-	fmt.Printf("EkiList: %v\n", sut)
-	fmt.Printf("Actual P: %v\n", actualP)
-	fmt.Printf("New V: %v\n", newV)
-
 	final_v := Dijkstra_main(sut, &GlobalEkikan{ekikanList:Ekikan_List})
 	fmt.Println(final_v)
 }
