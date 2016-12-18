@@ -109,11 +109,11 @@ func Test_koushin(t *testing.T) {
 
 func TestEkiList_SaitanWoBunri(t *testing.T) {
 	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
-	kiten := ekiList.eki_list[0].namae     // 代々木上原 is 起点
-	ekiList.Shokika(kiten)
-	sut := &EkiList{eki_list: ekiList.eki_list[1:]} // 代々木公園
+	ekiList.Shokika(ekiList.eki_list[0].namae)      // 代々木上原 is 起点
+	kiten := ekiList.eki_list[0]
+	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
 
-	Koushin(ekiList.eki_list[0], sut)
+	Koushin(kiten, sut)
 	actualP, newV, _ := SaitanWoBunri(sut)
 	fmt.Println(sut)
 	fmt.Printf("Actual P: %v\n", actualP)
