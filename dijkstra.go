@@ -3,6 +3,7 @@ package main
 import (
 	"math"
 	"errors"
+	"fmt"
 )
 
 type Eki struct {
@@ -86,13 +87,15 @@ func SaitanWoBunri(v *EkiList) (*Eki, *EkiList, error) {
 // v: Undetermined Eki list
 // g: Global Ekikan
 func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
-
+	fmt.Println(len(v.eki_list))
+	if len(v.eki_list) == 0 {
+		return v
+	}
 	// 1) SaitanWobunri(v) -> p, v with stripped p
 	// 2) Koushin(p, v) -> updated min distance for every V element based on p
-	for len(v.eki_list) > 0 {
-		p, v, _ := SaitanWoBunri(v)
-		Koushin(p, v)
-	}
+	p, v, _ := SaitanWoBunri(v)
+	Koushin(p, v)
+	Dijkstra_main(v, g)
 
-	return nil
+	return v
 }
