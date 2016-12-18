@@ -102,7 +102,7 @@ var Ekikan_List = [] Ekikan{
 	{kiten:"日本橋", shuten:"京橋", keiyu:"銀座線", kyori:0.7, jikan:2},
 	{kiten:"京橋", shuten:"銀座", keiyu:"銀座線", kyori:0.7, jikan:1},
 	{kiten:"銀座", shuten:"新橋", keiyu:"銀座線", kyori:0.9, jikan:2},
-	{kiten:"新橋", shuten:"虎ノ門", keiyu:"銀座線", kyori:0.8, jikan:2},
+	{kiten:"新橋", shuten:"表参道", keiyu:"銀座線", kyori:0.8, jikan:2},
 	{kiten:"虎ノ門", shuten:"溜池山王", keiyu:"銀座線", kyori:0.6, jikan:2},
 	{kiten:"溜池山王", shuten:"赤坂見附", keiyu:"銀座線", kyori:0.9, jikan:2},
 	{kiten:"赤坂見附", shuten:"青山一丁目", keiyu:"銀座線", kyori:1.3, jikan:2},

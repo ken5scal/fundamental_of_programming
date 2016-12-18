@@ -58,7 +58,7 @@ func (q *Eki) Kousin1(p *Eki) {
 
 	if q.saitan_kyori > p.saitan_kyori {
 		q.saitan_kyori = p.saitan_kyori + kyori
-		q.temae_list = append(q.temae_list, q.namae)
+		q.temae_list = append([]string{}, q.namae)
 		q.temae_list = append(q.temae_list, p.temae_list...)
 	}
 }
@@ -101,8 +101,8 @@ func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
 
 	Koushin(p, new_v)
 	fmt.Printf("P: %v\n" ,p)
+	//fmt.Printf("new_v: %v\n" ,new_v)
 	Dijkstra_main(new_v, g)
 
-	//fmt.Println(append(hoge.eki_list, p))
 	return new_v
 }

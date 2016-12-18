@@ -108,16 +108,21 @@ func Test_Koushin(t *testing.T) {
 }
 
 func TestDijkstra_main(t *testing.T) {
-	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
-	ekiList.Shokika(ekiList.eki_list[0].namae)      // 代々木上原 is 起点
+	ekimei_list := &GlobalEkimei{EkimeiList: Ekimei_List}
+	fmt.Printf("Original ekimei_list: %v\n", ekimei_list)
+	ekimei_list.Seiretsu()
+	fmt.Printf("Seiretu ekimei_list: %v\n", ekimei_list)
+	ekiList := MakeEkiList(ekimei_list)
+
+	ekiList.Shokika("青山一丁目")      // 代々木上原 is 起点
 	kiten := &ekiList.eki_list[0]
 
 	// eki list after shokika
 	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
-	Koushin(kiten, sut)
 	//fmt.Printf("Original ekilist: %v\n", sut)
+	Koushin(kiten, sut)
 	final_v := Dijkstra_main(sut, &GlobalEkikan{ekikanList:Ekikan_List})
-	fmt.Println(final_v)
+	fmt.Printf("Final Value: %v\n", final_v)
 }
 
 func TestEkiList_SaitanWoBunri(t *testing.T) {
