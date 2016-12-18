@@ -109,7 +109,8 @@ func Test_koushin(t *testing.T) {
 
 func TestEkiList_SaitanWoBunri(t *testing.T) {
 	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
-	ekiList.Shokika(ekiList.eki_list[0].namae)    // 代々木上原
+	kiten := ekiList.eki_list[0].namae     // 代々木上原 is 起点
+	ekiList.Shokika(kiten)
 	sut := &EkiList{eki_list: ekiList.eki_list[1:]} // 代々木公園
 
 	Koushin(ekiList.eki_list[0], sut)

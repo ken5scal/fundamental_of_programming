@@ -82,6 +82,19 @@ func SaitanWoBunri(v *EkiList) (*Eki, *EkiList, error) {
 	return nil, nil, errors.New("At least one of SaitanKyori should be Finite Number")
 }
 
+// Returns list with minimum distance and path
+// v: Undetermined Eki list
+// g: Global Ekikan
 func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
+	if len(v) == 0 {
+		return nil
+	}
+
+
+	p, newV, err := SaitanWoBunri(v); if err != nil {
+		panic(err.Error())
+	}
+	Koushin(p, newV)
+
 	return nil
 }
