@@ -9,4 +9,7 @@ func main() {
 	kiten = ekimei_list.RomajiToKanji(kiten)
 	syuten = ekimei_list.RomajiToKanji(syuten)
 
+	eki_list := MakeEkiList(ekimei_list)
+	eki_list.Shokika(kiten)
+
 }

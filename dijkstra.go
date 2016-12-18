@@ -82,5 +82,6 @@ func SaitanWoBunri(v *EkiList) (*Eki, *EkiList, error) {
 	return nil, nil, errors.New("At least one of SaitanKyori should be Finite Number")
 }
 
-
-
+func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
+	return nil
+}
