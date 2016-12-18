@@ -134,7 +134,7 @@ func TestEkiList_SaitanWoBunri(t *testing.T) {
 
 	expectedNamae := "代々木公園"
 	expectedSaitan := 1.0
-	expectedTemaeList := []string{"代々木公園", "代々木上原"}
+	expectedTemaeList := []string{"代々木上原", "代々木公園"}
 
 	if actualP.namae != expectedNamae {
 		t.Errorf("got name %v instead of %v", actualP.namae, expectedNamae)
@@ -144,7 +144,7 @@ func TestEkiList_SaitanWoBunri(t *testing.T) {
 	}
 	for i, acutalTemae := range actualP.temae_list {
 		if acutalTemae != expectedTemaeList[i] {
-			t.Errorf("got temae %v instead of %v", acutalTemae, expectedNamae[i])
+			t.Errorf("got temae %v instead of %v", acutalTemae, expectedTemaeList[i])
 			break
 		}
 	}
