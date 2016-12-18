@@ -49,7 +49,7 @@ func (e *EkiList) Shokika(kitenName string) {
 
 // Check if p and q are connected
 // If connected, then update q's saitankyori / temae list otherwise leave as it is
-func (q *Eki)Kousin1(p Eki) {
+func (q *Eki)Kousin1(p *Eki) {
 	kyori := GlobalEkikanList.GetEkikanKyori(p.namae, q.namae); if kyori == math.Inf(+1) {
 		return
 	}
@@ -61,7 +61,7 @@ func (q *Eki)Kousin1(p Eki) {
 }
 
 // Repeat kousin1 for unfixed Eki lists
-func Koushin(p Eki, v *EkiList) {
+func Koushin(p *Eki, v *EkiList) {
 	for i, q := range v.eki_list {
 		q.Kousin1(p)
 		v.eki_list[i] = q
@@ -89,6 +89,10 @@ func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
 
 	// 1) SaitanWobunri(v) -> p, v with stripped p
 	// 2) Koushin(p, v) -> updated min distance for every V element based on p
+	for len(v.eki_list) > 0 {
+		p, v, _ := SaitanWoBunri(v)
+		Koushin(p, v)
+	}
 
 	return nil
 }
