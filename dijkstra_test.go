@@ -82,7 +82,7 @@ func Test_Koushin1(t *testing.T) {
 	}
 }
 
-func Test_koushin(t *testing.T) {
+func Test_Koushin(t *testing.T) {
 	ekiList := MakeEkiList(&GlobalEkimei{EkimeiList:Ekimei_List})
 	ekiList.Shokika(ekiList.eki_list[0].namae)    // 代々木上原
 	sut := &EkiList{eki_list: ekiList.eki_list[1:]} // 代々木公園
@@ -91,7 +91,7 @@ func Test_koushin(t *testing.T) {
 	// sut[0](代々木公園) should have following parameters
 	expectedNamae := sut.eki_list[0].namae
 	expectedSaitan := 1.0
-	expectedTemaeList := []string{"代々木公園", "代々木上原"}
+	expectedTemaeList := []string{"代々木上原", "代々木公園"}
 
 	if sut.eki_list[0].namae != expectedNamae {
 		t.Errorf("got name %v instead of %v", sut.eki_list[0].namae, expectedNamae)
@@ -101,7 +101,7 @@ func Test_koushin(t *testing.T) {
 	}
 	for i, acutalTemae := range sut.eki_list[0].temae_list {
 		if acutalTemae != expectedTemaeList[i] {
-			t.Errorf("got temae %v instead of %v", acutalTemae, expectedNamae[i])
+			t.Errorf("got temae %v instead of %v", acutalTemae, expectedTemaeList[i])
 			break
 		}
 	}
@@ -115,9 +115,9 @@ func TestDijkstra_main(t *testing.T) {
 	// eki list after shokika
 	sut := &EkiList{eki_list: ekiList.eki_list[1:]}
 	Koushin(kiten, sut)
-	fmt.Printf("Original ekilist: %v\n", sut)
-	final_v := Dijkstra_main(sut, &GlobalEkikan{ekikanList:Ekikan_List})
-	fmt.Println(final_v)
+	//fmt.Printf("Original ekilist: %v\n", sut)
+	//final_v := Dijkstra_main(sut, &GlobalEkikan{ekikanList:Ekikan_List})
+	//fmt.Println(final_v)
 }
 
 func TestEkiList_SaitanWoBunri(t *testing.T) {

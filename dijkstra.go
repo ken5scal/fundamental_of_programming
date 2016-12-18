@@ -3,7 +3,6 @@ package main
 import (
 	"math"
 	"errors"
-	"fmt"
 )
 
 type Eki struct {
@@ -95,7 +94,7 @@ func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
 		}
 		Koushin(p, new_v)
 		v = new_v
-		fmt.Println(v)
+		//fmt.Println(v)
 	}
 
 	return v
