@@ -87,12 +87,8 @@ func SaitanWoBunri(v *EkiList) (*Eki, *EkiList, error) {
 // g: Global Ekikan
 func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
 
-	//for i, hoge := range v.eki_list {
-	//	p, newV, err := SaitanWoBunri(v); if err != nil {
-	//		panic(err.Error())
-	//	}
-	//	Koushin(p, newV)
-	//}
+	// 1) SaitanWobunri(v) -> p, v with stripped p
+	// 2) Koushin(p, v) -> updated min distance for every V element based on p
 
 	return nil
 }
