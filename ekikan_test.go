@@ -12,6 +12,11 @@ func TestGlobalEkikan_GetEkikanKyori(t *testing.T) {
 	if actual != expected {
 		t.Errorf("got %v instead of %v", actual, expected)
 	}
+
+	actual = sut.GetEkikanKyori("大手町", "八丁堀")
+	if actual != math.Inf(+1) {
+		t.Error("Should be Infifinite")
+	}
 }
 
 func Test_GetEkikanKyori_In_ReveseOrder(t *testing.T) {

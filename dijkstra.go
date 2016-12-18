@@ -3,6 +3,7 @@ package main
 import (
 	"math"
 	"errors"
+	"fmt"
 )
 
 type Eki struct {
@@ -49,14 +50,16 @@ func (e *EkiList) Shokika(kitenName string) {
 
 // Check if p and q are connected
 // If connected, then update q's saitankyori / temae list otherwise leave as it is
-func (q *Eki)Kousin1(p *Eki) {
-	kyori := GlobalEkikanList.GetEkikanKyori(p.namae, q.namae); if kyori == math.Inf(+1) {
+func (q *Eki) Kousin1(p *Eki) {
+	kyori := GlobalEkikanList.GetEkikanKyori(p.namae, q.namae)
+	if kyori == math.Inf(+1) {
 		return
 	}
 
 	if q.saitan_kyori > p.saitan_kyori {
 		q.saitan_kyori = p.saitan_kyori + kyori
-		q.temae_list = append(p.temae_list, q.namae)
+		q.temae_list = append(q.temae_list, q.namae)
+		q.temae_list = append(q.temae_list, p.temae_list...)
 	}
 }
 
@@ -88,14 +91,18 @@ func SaitanWoBunri(v *EkiList) (*Eki, *EkiList, error) {
 func Dijkstra_main(v *EkiList, g *GlobalEkikan) *EkiList {
 	// 1) SaitanWobunri(v) -> p, v with stripped p
 	// 2) Koushin(p, v) -> updated min distance for every V element based on p
-	for len(v.eki_list) > 0 {
-		p, new_v, err := SaitanWoBunri(v); if err != nil {
-			panic(err.Error())
-		}
-		Koushin(p, new_v)
-		v = new_v
-		//fmt.Println(v)
+	if len(v.eki_list) == 0 {
+		return v
 	}
 
-	return v
+	p, new_v, err := SaitanWoBunri(v); if err != nil {
+		panic(err.Error())
+	}
+
+	Koushin(p, new_v)
+	fmt.Printf("P: %v\n" ,p)
+	Dijkstra_main(new_v, g)
+
+	//fmt.Println(append(hoge.eki_list, p))
+	return new_v
 }
